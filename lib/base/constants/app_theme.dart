@@ -4,7 +4,7 @@ import 'app_constants.dart';
 class AppTheme {
   var _lightTheme = ThemeData.light().copyWith(
     primaryColor: AppColors.content,
-    iconTheme: IconThemeData(color: AppColors.content, size: AppIconSize.small),
+    iconTheme: IconThemeData(color: AppColors.content, size: AppIconSize.medium),
     textTheme: TextTheme(
       headline6: TextStyle(color: AppColors.content, fontWeight: AppFontUtils.medium, fontSize: AppFontUtils.headline6),
       subtitle2: TextStyle(color: AppColors.content, fontWeight: AppFontUtils.bold, fontSize: AppFontUtils.subtitle2),

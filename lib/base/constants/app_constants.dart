@@ -16,6 +16,9 @@ class AppColors {
   static const Color black = Color(0xff000a12);
   static const Color white = Color(0xffffffff);
   static const Color transparent = Colors.transparent;
+  static const Color green = Colors.green;
+  static const Color red = Colors.red;
+  static const Color redAccent = Colors.redAccent;
 }
 
 class AppFontUtils {
@@ -48,6 +51,7 @@ class AppRadius {
 class AppIconSize {
   static final double small = 20.h;
   static final double medium = 24.h;
+  static final double xlarge = 80.h;
 }
 
 class AppImageSize {
