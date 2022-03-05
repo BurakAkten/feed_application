@@ -16,13 +16,13 @@ class FeedItemViewModel extends BaseViewModel {
   }
 
   void changeLikeStatus() {
-    //If there is an update service, can ben used here
+    //If there is an update service, can ben used here and make this method future
     _isLiked = !_isLiked;
     reloadState();
   }
 
   void changeSavedStatus() {
-    //If there is an update service, can ben used here
+    //If there is an update service, can ben used here and make this method future
     _isSaved = !_isSaved;
     reloadState();
   }

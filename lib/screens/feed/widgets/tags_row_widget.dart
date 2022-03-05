@@ -1,6 +1,5 @@
 import 'package:feed_application/utils/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
-
 import '../../../base/constants/app_constants.dart';
 import '../../../base/constants/app_edge_insets.dart';
 import '../../../domain/dtos/feed_dto.dart';
@@ -12,7 +11,7 @@ class TagsRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppEdgeInsets.only(left: AppSpacing.spacingMedium, right: AppSpacing.spacingMedium, bottom: AppSpacing.spacingMedium),
+      padding: AppEdgeInsets.only(left: AppSpacing.spacingMedium, right: AppSpacing.spacingMedium, top: AppSpacing.spacingSmall),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

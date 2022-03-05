@@ -18,23 +18,21 @@ class DescriptionWidget extends StatefulWidget {
 class _DescriptionWidgetState extends State<DescriptionWidget> with TickerProviderStateMixin {
   late bool _isMore;
   late bool _isBigText;
-  late double? _height;
   late String _description;
 
   @override
   void initState() {
     super.initState();
     _isMore = false;
-    _description = widget.description.replaceAll("\n", "  ");
+    _description = widget.description.replaceAll("\n", " ");
     _isBigText = (_description.length) > AppSizes.descriptionLenght;
-    _height = (_description.length) < AppSizes.descriptionLenght ? AppSizes.descriptionHeight / 2 : AppSizes.descriptionHeight;
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
-      height: _height,
+      height: height,
       padding: AppEdgeInsets.only(left: AppSpacing.spacingMedium, right: AppSpacing.spacingMedium),
       alignment: Alignment.topLeft,
       child: Text.rich(
@@ -43,24 +41,28 @@ class _DescriptionWidgetState extends State<DescriptionWidget> with TickerProvid
           style: context.textTheme.subtitle2,
           children: [
             TextSpan(
-              text: _isBigText && !_isMore ? _description.substring(0, 150) : widget.description,
+              text: description,
               style: context.textTheme.bodyText2?.copyWith(fontSize: AppFontUtils.small),
             ),
             if (_isBigText)
               TextSpan(
                 text: _isMore ? "  ${LocaleKeys.less.locale}..." : "  ${LocaleKeys.more.locale}...",
                 style: context.textTheme.caption?.copyWith(fontSize: AppFontUtils.xSmall, color: AppColors.grey),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    setState(() {
-                      _isMore = !_isMore;
-                      _height = _isMore ? null : AppSizes.descriptionHeight;
-                    });
-                  },
+                recognizer: TapGestureRecognizer()..onTap = () => setState(() => _isMore = !_isMore),
               ),
           ],
         ),
       ),
     );
   }
+
+  String get description => (_isBigText || widget.description.contains("\n")) && !_isMore
+      ? _description.substring(0, _description.length < AppSizes.descriptionLenght ? _description.length : AppSizes.descriptionLenght)
+      : widget.description;
+
+  double? get height => _isMore
+      ? null
+      : (_description.length) < AppSizes.descriptionLenght
+          ? AppSizes.descriptionHeight
+          : AppSizes.descriptionHeightForThreeLines;
 }

@@ -24,7 +24,7 @@ class _FeedItemImageWidgetState extends State<FeedItemImageWidget> with SingleTi
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _size = Tween(begin: 0, end: AppIconSize.xlarge);
     _animationSize = _size.animate(_animationController);
     _animationController.addListener(() {
@@ -42,7 +42,7 @@ class _FeedItemImageWidgetState extends State<FeedItemImageWidget> with SingleTi
   Widget build(BuildContext context) {
     return InkWell(
       onDoubleTap: () async {
-        await _animationController.forward();
+        if (!widget.vm.isLiked) await _animationController.forward();
         widget.vm.changeLikeStatus();
       },
       child: Container(
@@ -110,6 +110,10 @@ class _FeedItemImageWidgetState extends State<FeedItemImageWidget> with SingleTi
                     fit: BoxFit.fill,
                     width: context.width,
                     height: AppSizes.feeedItemImageHeight,
+                    loadingBuilder: (context, child, progress) {
+                      if (progress == null) return child;
+                      return Center(child: CircularProgressIndicator.adaptive());
+                    },
                   ),
                 )
                 .toList() ??

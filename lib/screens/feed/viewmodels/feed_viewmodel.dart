@@ -15,7 +15,6 @@ class FeedViewModel extends BaseViewModel {
   @override
   FutureOr<void> init() async {
     feedItems = await service.getFeedItems(page: page);
-    feedItems = feedItems.sublist(8);
   }
 
   Future<void> loadMore() async {

@@ -5,8 +5,9 @@ class AppSizes {
   static final double avatarSize = 32.h;
   static final double avatarRowHeight = 60.h;
   static final double feeedItemImageHeight = 400.h;
-  static final double descriptionLenght = 150;
-  static final double descriptionHeight = 60.h;
+  static final int descriptionLenght = 150;
+  static final double descriptionHeightForThreeLines = 54.h;
+  static final double descriptionHeight = 38.h;
 }
 
 class AppColors {
@@ -52,11 +53,6 @@ class AppIconSize {
   static final double small = 20.h;
   static final double medium = 24.h;
   static final double xlarge = 80.h;
-}
-
-class AppImageSize {
-  static final double small = 40.w;
-  static final double medium = 60.w;
 }
 
 class AppSpacing {

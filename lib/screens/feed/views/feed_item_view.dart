@@ -21,13 +21,27 @@ class FeedItemView extends StatefulWidget {
 }
 
 class _FeedItemViewState extends State<FeedItemView> {
+  late FeedItemViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = FeedItemViewModel(widget.item);
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FeedItemViewModel>.value(
-      value: FeedItemViewModel(widget.item),
+      value: viewModel,
       child: Consumer<FeedItemViewModel>(
         builder: (context, vm, child) => Container(
-          key: Key(widget.item.id.toString()),
+          key: Key(vm.item.id.toString()),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
