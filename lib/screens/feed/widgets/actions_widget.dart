@@ -12,9 +12,9 @@ class ActionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppEdgeInsets.symmetric(vertical: AppSpacing.spacingMedium),
+      padding: AppEdgeInsets.symmetric(vertical: AppSpacing.spacingMedium, horizontal: AppSpacing.spacingXxLarge),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(AppIcons.map_border),
           Icon(AppIcons.comment),

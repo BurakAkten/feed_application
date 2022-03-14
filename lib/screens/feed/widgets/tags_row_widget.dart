@@ -11,7 +11,6 @@ class TagsRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppEdgeInsets.only(left: AppSpacing.spacingMedium, right: AppSpacing.spacingMedium, top: AppSpacing.spacingSmall),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

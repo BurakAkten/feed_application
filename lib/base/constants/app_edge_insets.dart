@@ -14,6 +14,8 @@ class AppEdgeInsets extends EdgeInsets {
 
   AppEdgeInsets.small() : super.all(AppSpacing.spacingSmall.w);
 
+  AppEdgeInsets.xSmall() : super.all(AppSpacing.spacingXSmall.w);
+
   AppEdgeInsets.symmetricMedium() : super.symmetric(vertical: AppSpacing.spacingMedium.h, horizontal: AppSpacing.spacingMedium.w);
   AppEdgeInsets.symmetricSmall() : super.symmetric(vertical: AppSpacing.spacingSmall.h, horizontal: AppSpacing.spacingSmall.w);
 

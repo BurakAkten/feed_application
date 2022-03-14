@@ -11,7 +11,7 @@ class AvatarListTileWidget extends StatelessWidget {
   final String? subTitle;
   final Widget? icon;
   final Function()? iconOnPressed;
-  final Color borderColor;
+  final bool isBordered;
 
   const AvatarListTileWidget({
     Key? key,
@@ -20,27 +20,30 @@ class AvatarListTileWidget extends StatelessWidget {
     this.subTitle,
     this.icon,
     this.iconOnPressed,
-    this.borderColor = AppColors.white,
+    this.isBordered = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppEdgeInsets.symmetricMedium(),
+      padding: AppEdgeInsets.only(left: AppSpacing.spacingSmall, right: AppSpacing.spacingLarge),
       height: AppSizes.avatarRowHeight,
       child: Row(
         children: [
-          AvatarWidget(url: avatarUrl ?? "", borderColor: borderColor),
-          SizedBox(width: AppSpacing.spacingMedium.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(title ?? "-", style: context.textTheme.subtitle2?.copyWith(color: AppColors.white)),
-              Text(subTitle ?? "-", style: context.textTheme.bodyText1?.copyWith(color: AppColors.white)),
-            ],
+          AvatarWidget(url: avatarUrl ?? "", isBordered: isBordered),
+          SizedBox(width: AppSpacing.spacingSmall.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(title ?? "-", style: context.textTheme.subtitle2?.copyWith(color: AppColors.white)),
+                SizedBox(height: AppSpacing.spacingXxxSmall.h),
+                Text(subTitle ?? "-", style: context.textTheme.bodyText1?.copyWith(color: AppColors.white)),
+              ],
+            ),
           ),
-          Spacer(),
+          SizedBox(width: AppSpacing.spacingSmall.w),
           if (icon != null) InkWell(onTap: iconOnPressed, child: icon!)
         ],
       ),

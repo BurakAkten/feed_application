@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feed_application/screens/feed/viewmodels/feed_item_viewmodel.dart';
 import 'package:feed_application/utils/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../../base/constants/app_constants.dart';
 import '../../../core_widgets/avatar_list_tile_widget.dart';
@@ -51,9 +52,9 @@ class _FeedItemImageWidgetState extends State<FeedItemImageWidget> with SingleTi
           children: [
             _buildSlider(context),
             _buildRow(
-              topPadding: 0.0,
+              topPadding: AppSpacing.spacingSmall.h,
               child: AvatarListTileWidget(
-                borderColor: AppColors.redAccent,
+                isBordered: true,
                 avatarUrl: widget.vm.item.authorPhotoUrl,
                 title: widget.vm.item.authorUsername,
                 subTitle: widget.vm.item.authorFullName,
@@ -61,7 +62,7 @@ class _FeedItemImageWidgetState extends State<FeedItemImageWidget> with SingleTi
               ),
             ),
             _buildRow(
-              bottomPadding: 0.0,
+              bottomPadding: AppSpacing.spacingSmall.h,
               child: AvatarListTileWidget(
                 avatarUrl: widget.vm.item.placeLogoUrl,
                 title: widget.vm.item.placeName,

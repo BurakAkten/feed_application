@@ -25,7 +25,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> with TickerProvid
     super.initState();
     _isMore = false;
     _description = widget.description.replaceAll("\n", " ");
-    _isBigText = (_description.length) > AppSizes.descriptionLenght;
+    _isBigText = (_description.length) >= AppSizes.descriptionLenght;
   }
 
   @override
@@ -33,36 +33,43 @@ class _DescriptionWidgetState extends State<DescriptionWidget> with TickerProvid
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       height: height,
-      padding: AppEdgeInsets.only(left: AppSpacing.spacingMedium, right: AppSpacing.spacingMedium),
+      padding: AppEdgeInsets.only(
+        left: AppSpacing.spacingSmall,
+        right: AppSpacing.spacingSmall,
+        bottom: AppSpacing.spacingXSmall,
+      ),
       alignment: Alignment.topLeft,
       child: Text.rich(
         TextSpan(
-          text: "${widget.userName}  ",
+          text: "${widget.userName} ",
           style: context.textTheme.subtitle2,
           children: [
             TextSpan(
               text: description,
               style: context.textTheme.bodyText2?.copyWith(fontSize: AppFontUtils.small),
+              children: [
+                if (_isBigText)
+                  TextSpan(
+                    text: _isMore ? " ${LocaleKeys.less.locale}..." : " ${LocaleKeys.more.locale}...",
+                    style: context.textTheme.caption?.copyWith(fontSize: AppFontUtils.small, color: AppColors.grey),
+                    recognizer: TapGestureRecognizer()..onTap = () => setState(() => _isMore = !_isMore),
+                  ),
+              ],
             ),
-            if (_isBigText)
-              TextSpan(
-                text: _isMore ? "  ${LocaleKeys.less.locale}..." : "  ${LocaleKeys.more.locale}...",
-                style: context.textTheme.caption?.copyWith(fontSize: AppFontUtils.xSmall, color: AppColors.grey),
-                recognizer: TapGestureRecognizer()..onTap = () => setState(() => _isMore = !_isMore),
-              ),
           ],
         ),
+        maxLines: _isMore ? null : 3,
       ),
     );
   }
 
   String get description => (_isBigText || widget.description.contains("\n")) && !_isMore
-      ? _description.substring(0, _description.length < AppSizes.descriptionLenght ? _description.length : AppSizes.descriptionLenght)
+      ? _description.substring(0, _description.length >= AppSizes.descriptionLenght ? AppSizes.descriptionLenght : _description.length)
       : widget.description;
 
   double? get height => _isMore
       ? null
-      : (_description.length) < AppSizes.descriptionLenght
+      : !_isBigText
           ? AppSizes.descriptionHeight
           : AppSizes.descriptionHeightForThreeLines;
 }

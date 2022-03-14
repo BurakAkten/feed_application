@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSizes {
-  static final double avatarSize = 32.h;
+  static final double avatarSize = 64.h;
   static final double avatarRowHeight = 60.h;
   static final double feeedItemImageHeight = 400.h;
-  static final int descriptionLenght = 150;
-  static final double descriptionHeightForThreeLines = 54.h;
-  static final double descriptionHeight = 38.h;
+  static final int descriptionLenght = 130;
+  static final double descriptionHeightForThreeLines = 60.h;
+  static final double descriptionHeight = 46.h;
 }
 
 class AppColors {
@@ -47,16 +47,22 @@ class AppRadius {
   static const double small = 4;
   static const double medium = 8;
   static const double large = 16;
+  static const double xlarge = 24;
 }
 
 class AppIconSize {
   static final double small = 20.h;
   static final double medium = 24.h;
+  static final double large = 36.h;
   static final double xlarge = 80.h;
 }
 
 class AppSpacing {
   static const int spacingZero = 0;
-  static const int spacingSmall = 4;
-  static const int spacingMedium = 8;
+  static const int spacingXxxSmall = 1;
+  static const int spacingXSmall = 4;
+  static const int spacingSmall = 8;
+  static const int spacingMedium = 12;
+  static const int spacingLarge = 16;
+  static const int spacingXxLarge = 32;
 }

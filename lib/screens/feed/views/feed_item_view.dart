@@ -50,7 +50,11 @@ class _FeedItemViewState extends State<FeedItemView> {
               DescriptionWidget(userName: vm.item.authorUsername ?? "", description: vm.item.description ?? ""),
               if (vm.item.tags != null && vm.item.tags!.isNotEmpty) TagsRowWidget(tags: vm.item.tags!),
               Container(
-                padding: AppEdgeInsets.symmetricMedium(),
+                padding: AppEdgeInsets.only(
+                  left: AppSpacing.spacingSmall,
+                  top: AppSpacing.spacingSmall,
+                  bottom: AppSpacing.spacingLarge,
+                ),
                 child: Text(
                   vm.item.createdAt.timeDifference,
                   style: context.textTheme.caption?.copyWith(color: AppColors.grey),
