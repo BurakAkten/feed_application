@@ -7,6 +7,8 @@ import 'package:feed_application/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/flutter_project_base.dart';
 
+import '../../core_widgets/no_item_widget.dart';
+
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
@@ -40,17 +42,19 @@ class _FeedScreenState extends State<FeedScreen> {
     );
   }
 
-  Widget _buildScreen(BuildContext context, FeedViewModel viewModel) => ListView.builder(
-        controller: controller,
-        itemCount: viewModel.feedItems.length,
-        itemBuilder: (context, index) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FeedItemView(item: viewModel.feedItems[index]),
-            if (index == viewModel.feedItems.length - 1 && viewModel.isMoreLoading) Center(child: CircularProgressIndicator.adaptive())
-          ],
-        ),
-      );
+  Widget _buildScreen(BuildContext context, FeedViewModel viewModel) => viewModel.feedItems.isEmpty
+      ? NoItemWidget(title: viewModel.message ?? LocaleKeys.sthWentWrong.locale)
+      : ListView.builder(
+          controller: controller,
+          itemCount: viewModel.feedItems.length,
+          itemBuilder: (context, index) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FeedItemView(item: viewModel.feedItems[index]),
+              if (index == viewModel.feedItems.length - 1 && viewModel.isMoreLoading) Center(child: CircularProgressIndicator.adaptive())
+            ],
+          ),
+        );
 
   AppBar _buildAppBar(BuildContext context) => AppBar(
         centerTitle: true,
